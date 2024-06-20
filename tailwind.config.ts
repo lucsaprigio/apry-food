@@ -7,9 +7,12 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
+    backgroundImage: {
+      'bg-signin': "url('/images/background-signin.jpg')"
+    },
     container: {
       center: true,
       padding: "2rem",
