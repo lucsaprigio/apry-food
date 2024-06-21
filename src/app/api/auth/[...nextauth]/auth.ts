@@ -23,7 +23,6 @@ export const nextAuthOptions: AuthOptions = ({
                 const user = await prisma.user.findUnique({
                     where: { email: credentials?.email }
                 });
-                console.log(user)
 
                 if (user && compareSync(credentials.password, user.password)) {
                     return user;

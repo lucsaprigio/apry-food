@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signIn } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useRouter } from "next/navigation";
 
 const handleSigninFormSchema = z.object({
     email: z.string().min(1, 'E-mail obrigatório').email('Digite um e-mail válido'),
@@ -20,6 +21,8 @@ export function SigninForm() {
         resolver: zodResolver(handleSigninFormSchema)
     });
 
+    const router = useRouter();
+
     const [visible, setVisible] = useState(false);
 
     async function handleSignIn(data: any) {
@@ -29,17 +32,20 @@ export function SigninForm() {
                 password: data.password,
                 redirect: false
             });
+            console.log(result);
 
             if (result?.error) {
                 toast({
                     variant: "destructive",
-                    title: "Ocorreu um erro",
-                    description: "Usuário não encontrado",
+                    title: "Usuário ou senha incorreta",
+                    description: "Por favor, tente novamente",
                     action: (
-                        <ToastAction altText="Fechar">Fechar</ToastAction>
+                        <ToastAction altText="Fechar">Ok</ToastAction>
                     )
                 })
             }
+
+            router.push('/painel')
         } catch (error) {
             toast({
                 title: "Ocorreu um erro",
