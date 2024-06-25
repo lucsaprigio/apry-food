@@ -32,6 +32,7 @@ export function SigninForm() {
                 password: data.password,
                 redirect: false
             });
+
             console.log(result);
 
             if (result?.error) {
@@ -45,7 +46,7 @@ export function SigninForm() {
                 })
             }
 
-            router.push('/painel')
+            router.replace('/painel')
         } catch (error) {
             toast({
                 title: "Ocorreu um erro",

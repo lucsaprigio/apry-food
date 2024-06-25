@@ -1,4 +1,5 @@
-
+'use client'
+import { SigninForm } from "@/app/Components/signin-form";
 
 export default function SignIn() {
     return (
